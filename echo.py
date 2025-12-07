@@ -1,10 +1,20 @@
 """
 FastMCP Echo Server
+
+This server demonstrates FastMCP authentication patterns.
+When deployed to FastMCP Cloud with Private mode, authentication
+is handled automatically by the platform.
+
+For local development with bearer token authentication, set:
+    FASTMCP_SERVER_AUTH=fastmcp.server.auth.providers.jwt.StaticTokenVerifier
+    FASTMCP_SERVER_AUTH_JWT_TOKENS='{"dev-token": {"client_id": "dev-user", "scopes": ["read", "write"]}}'
 """
 
+import os
 from fastmcp import FastMCP
 
-# Create server
+# Create server - authentication is configured via environment variables
+# or automatically by FastMCP Cloud when deployed with Private mode
 mcp = FastMCP("Echo Server")
 
 
